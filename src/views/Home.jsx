@@ -10,7 +10,7 @@ import {
 
 const Home = () => {
   const [title, setTitle] = useState('');
-
+  const [id, setId] = useState(false);
   const [edit, setEdit] = useState(false);
   const books = useSelector(state => state.book.books);
   const readed = useSelector(state => state.book.readedBooks);
@@ -27,7 +27,8 @@ const Home = () => {
   };
 
   const onEditBook = (id, book, isTrue) => {
-    if (id === book.id) setEdit(prevState => !prevState);
+    setEdit(prevState => !prevState);
+    setId(id);
 
     if (book.title === title) return;
 
@@ -54,7 +55,7 @@ const Home = () => {
         <h1>Unreaded Books</h1>
         {books.slice(0, 10).map(book => (
           <ul className='d-flex' key={book.id}>
-            {edit ? (
+            {edit && id === book.id ? (
               <>
                 <input type='text' value={title} onChange={onChange} />
                 <div className='btn-control'>
