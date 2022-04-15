@@ -30,16 +30,26 @@ code {
   max-width: 500px;
   width: 100%;
   margin-right: 2em;
-  background-image: linear-gradient(
-    to right,
-    rgba(204, 204, 204, 0.623),
-    rgba(75, 34, 34, 0.308),
-    rgba(75, 34, 34, 0.308)
-  );
+  background: linear-gradient(#e66465, #9198e5);
   height: 500px;
+  position: relative;
 }
 
 .btn-control {
   width: 200px;
   display: flex;
+}
+
+.flex-buttons {
+  position: absolute;
+  bottom: 20px;
+}
+
+.flex-buttons__flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-center {
+  margin: 20px auto 20px 120px;
 }
