@@ -14,6 +14,9 @@ const Home = () => {
   const [title, setTitle] = useState('');
   const [id, setId] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [query, setQuery] = useState('');
+  const [pageStart, setPageStart] = useState(0);
+  const [pageEnd, setPageEnd] = useState(7);
 
   const books = useSelector(state => state.book.books);
   const readed = useSelector(state => state.book.readedBooks);
@@ -55,63 +58,105 @@ const Home = () => {
   };
 
   return (
-    <div className='flex'>
-      <div className='table'>
-        <h1>Unreaded Books</h1>
-        {books.map(book => (
-          <ul className='d-flex' key={book.id}>
-            {edit && id === book.id ? (
-              <Edit
-                title={title}
-                book={book}
-                onEditBook={onEditBook}
-                onReadBook={onReadBook}
-                onDeleteBook={onDeleteBook}
-                onChange={onChange}
-                isTrue={true}
-              />
-            ) : (
-              <Read
-                book={book}
-                onEditBook={onEditBook}
-                onReadBook={onReadBook}
-                onDeleteBook={onDeleteBook}
-                onChange={onChange}
-                isTrue={true}
-              />
+    <div className='books'>
+      <input
+        className='form-center'
+        type='text'
+        placeholder='Search Books'
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+      />
+      <div className='flex'>
+        <div className='table '>
+          <h1>Unreaded Books</h1>
+          {books
+            .filter(book =>
+              book.title.toLowerCase().includes(query.toLowerCase())
+            )
+            .slice(pageStart, pageEnd)
+            .map(book => (
+              <ul className='d-flex' key={book.id}>
+                {edit && id === book.id ? (
+                  <Edit
+                    title={title}
+                    book={book}
+                    onEditBook={onEditBook}
+                    onReadBook={onReadBook}
+                    onDeleteBook={onDeleteBook}
+                    onChange={onChange}
+                    isTrue={true}
+                  />
+                ) : (
+                  <Read
+                    book={book}
+                    onEditBook={onEditBook}
+                    onReadBook={onReadBook}
+                    onDeleteBook={onDeleteBook}
+                    onChange={onChange}
+                    isTrue={true}
+                  />
+                )}
+              </ul>
+            ))}
+          <div className='flex-buttons'>
+            {pageStart !== 0 && (
+              <button
+                className='btn-prev'
+                onClick={() => {
+                  setPageStart(state => state - 7);
+                  setPageEnd(state => state - 7);
+                }}
+              >
+                Prev
+              </button>
             )}
-          </ul>
-        ))}
-      </div>
+            {pageEnd < books.length && (
+              <button
+                className='btn-next'
+                onClick={() => {
+                  setPageStart(state => state + 7);
+                  setPageEnd(state => state + 7);
+                }}
+              >
+                Next
+              </button>
+            )}
+          </div>
+        </div>
 
-      <div className='table'>
-        <h1>Readed Books</h1>
-        {readed.map((book, idx) => (
-          <ul className='d-flex' key={book.id}>
-            {edit && id === book.id ? (
-              <Edit
-                title={title}
-                book={book}
-                onEditBook={onEditBook}
-                onReadBook={onReadBook}
-                onDeleteBook={onDeleteBook}
-                onChange={onChange}
-                isTrue={false}
-              />
-            ) : (
-              <>
-                <Read
-                  book={book}
-                  onEditBook={onEditBook}
-                  onReadBook={onReadBook}
-                  onDeleteBook={onDeleteBook}
-                  onChange={onChange}
-                  isTrue={false}
-                />
-              </>
-            )}
-          </ul>
-        ))}
+        <div className='table'>
+          <h1>Readed Books</h1>
+          {readed
+            .filter(book =>
+              book.title.toLowerCase().includes(query.toLowerCase())
+            )
+            .map((book, idx) => (
+              <ul className='d-flex' key={book.id}>
+                {edit && id === book.id ? (
+                  <Edit
+                    title={title}
+                    book={book}
+                    onEditBook={onEditBook}
+                    onReadBook={onReadBook}
+                    onDeleteBook={onDeleteBook}
+                    onChange={onChange}
+                    isTrue={false}
+                  />
+                ) : (
+                  <>
+                    <Read
+                      book={book}
+                      onEditBook={onEditBook}
+                      onReadBook={onReadBook}
+                      onDeleteBook={onDeleteBook}
+                      onChange={onChange}
+                      isTrue={false}
+                    />
+                  </>
+                )}
+              </ul>
+            ))}
+        </div>
       </div>
     </div>
   );

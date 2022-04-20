@@ -2,8 +2,8 @@ import React from 'react';
 
 const Read = ({ book, onReadBook, onDeleteBook, onEditBook, isTrue }) => {
   return (
-    <>
-      <li className='list-item'>{book.title}</li>
+    <li className='flex list-item'>
+      <span className='list-item__title'>{book.title}</span>
       <div className='btn-control'>
         {isTrue && (
           <button onClick={() => onReadBook(book.id, isTrue)} className='read'>
@@ -22,7 +22,7 @@ const Read = ({ book, onReadBook, onDeleteBook, onEditBook, isTrue }) => {
           Edit
         </button>
       </div>
-    </>
+    </li>
   );
 };
 

@@ -13,7 +13,7 @@ code {
 }
 
 .flex {
-  width: 1000px;
+  width: 1300px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -22,6 +22,7 @@ code {
 .d-flex {
   display: flex;
   justify-content: space-between;
+  padding-left: 0px;
 }
 
 .table {
@@ -30,8 +31,7 @@ code {
   max-width: 500px;
   width: 100%;
   margin-right: 2em;
-  background: linear-gradient(#e66465, #9198e5);
-  height: 500px;
+  height: 550px;
   position: relative;
 }
 
@@ -41,8 +41,7 @@ code {
 }
 
 .flex-buttons {
-  position: absolute;
-  bottom: 20px;
+  position: relative;
 }
 
 .flex-buttons__flex {
@@ -52,4 +51,26 @@ code {
 
 .btn-center {
   margin: 20px auto 20px 120px;
+}
+
+.form-center {
+  width: 30%;
+  margin: 1em auto;
+  padding: 0.5em;
+}
+
+.books {
+  text-align: center;
+}
+
+.btn-prev {
+  position: absolute;
+  bottom: -35px;
+  left: 100px;
+}
+
+.btn-next {
+  position: absolute;
+  bottom: -35px;
+  right: 100px;
 }

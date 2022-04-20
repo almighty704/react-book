@@ -10,7 +10,7 @@ const Edit = ({
   isTrue,
 }) => {
   return (
-    <>
+    <li className='list-item flex'>
       <input type='text' value={title} onChange={onChange} />
       <div className='btn-control'>
         {isTrue && (
@@ -30,7 +30,7 @@ const Edit = ({
           Save
         </button>
       </div>
-    </>
+    </li>
   );
 };
 

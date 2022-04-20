@@ -13,20 +13,26 @@
 button {
   border: none;
   padding: 0.5em;
+  background-color: rgb(255, 174, 0);
 
   margin: auto;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: rgb(167, 190, 62);
+  background-color: rgb(0, 255, 64);
 }
 
 ul {
   list-style-type: none;
 }
 
-.list-item {
+.list-item__title {
   text-transform: capitalize;
-  color: #fff;
+  color: rgb(0, 0, 0);
+}
+
+.list-item {
+  padding: 0.5em 1em;
+  box-shadow: 0 5px 8px -6px #222;
 }
